@@ -1,0 +1,5 @@
+{
+    "rust-client.rustupPath": "/Users/dorf/.cargo/bin/rustup",
+    "rust.all_features": true,
+    "editor.formatOnSave": true
+}

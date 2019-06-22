@@ -1,0 +1,5 @@
+{
+    "editor.formatOnSave": true,
+    // "rust-client.channel": "stable",
+    "rust-client.rustupPath": "/Users/dorf/.cargo/bin/rustup"
+}

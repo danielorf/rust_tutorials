@@ -1,0 +1,11 @@
+[package]
+name = "try_zmq_server"
+version = "0.1.0"
+authors = ["Daniel Orf <dorf@suse.com>"]
+edition = "2018"
+
+[dependencies]
+zmq = "0.9"
+
+[features]
+vendored-zmq = ['zmq/vendored']

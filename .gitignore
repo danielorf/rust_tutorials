@@ -3,3 +3,6 @@
 
 #Ignore VSCode metadata
 /.vscode
+
+# Ignore rust /target directory
+/target

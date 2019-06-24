@@ -5,6 +5,8 @@ extern crate serde_json;
 
 use nickel::status::StatusCode;
 use nickel::{Nickel, JsonBody, HttpRouter};
+use serde::{Serialize, Deserialize};
+// use serde_json;
 
 #[derive(Serialize, Deserialize)]
 struct Person {
@@ -29,6 +31,13 @@ fn main() {
         let person = try_with!(response, {
             request.json_as::<Person>().map_err(|e| (StatusCode::BadRequest, e))
         });
+
+        // serde test
+        let person_str = serde_json::to_string(&person).unwrap();
+        println!("This is string representation of json body: {:?}", person_str);
+        let mut person2: Person = serde_json::from_str::<Person>(&person_str).unwrap();
+        println!("This is the first name from struct: {}", person2.first_name);
+
         println!("Sending message from json post to zmq: {} {} {}", person.first_name, person.last_name, person.age,);
         let age_x2 = person.age * 2;
 

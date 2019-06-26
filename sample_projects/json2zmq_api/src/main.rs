@@ -1,18 +1,20 @@
-#[macro_use] extern crate nickel;
+#[macro_use]
+extern crate nickel;
 extern crate serde;
 extern crate serde_json;
-#[macro_use] extern crate serde_derive;
+#[macro_use]
+extern crate serde_derive;
 
 use nickel::status::StatusCode;
-use nickel::{Nickel, JsonBody, HttpRouter};
-use serde::{Serialize, Deserialize};
+use nickel::{HttpRouter, JsonBody, Nickel};
+use serde::{Deserialize, Serialize};
 // use serde_json;
 
 #[derive(Serialize, Deserialize)]
 struct Person {
     first_name: String,
-    last_name:  String,
-    age:        u8,
+    last_name: String,
+    age: u8,
 }
 
 fn main() {
@@ -32,11 +34,16 @@ fn main() {
             request.json_as::<Person>().map_err(|e| (StatusCode::BadRequest, e))
         });
 
+
         // serde test
         let person_str = serde_json::to_string(&person).unwrap();
         println!("This is string representation of json body: {:?}", person_str);
         let mut person2: Person = serde_json::from_str::<Person>(&person_str).unwrap();
         println!("This is the first name from struct: {}", person2.first_name);
+
+
+
+
 
         println!("Sending message from json post to zmq: {} {} {}", person.first_name, person.last_name, person.age,);
         let age_x2 = person.age * 2;

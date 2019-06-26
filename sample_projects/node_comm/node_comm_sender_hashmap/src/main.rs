@@ -17,8 +17,8 @@ fn main() {
     nodes.insert("id3".to_string(), "hostname3".to_string());
     nodes.insert("id4".to_string(), "hostname4".to_string());
 
-    // let serialized = serde_cbor::to_vec(&nodes).unwrap();
-    let serialized = serde_json::to_string(&nodes).unwrap();
+    let serialized = serde_cbor::to_vec(&nodes).unwrap();
+    // let serialized = serde_json::to_string(&nodes).unwrap();
     let context = zmq::Context::new();
     let requester = context.socket(zmq::REQ).unwrap();
     assert!(requester.connect("tcp://localhost:5555").is_ok());

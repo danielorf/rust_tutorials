@@ -28,7 +28,6 @@ impl Node {
 
     fn run(&self) {
         let allowed_duration = Duration::new(2, 0);
-        // let mut node_vec: Vec<String> = Vec::new();
 
         // Server setup
         let context = zmq::Context::new();
@@ -43,11 +42,12 @@ impl Node {
                 > 0
             {
                 let message = responder.recv_msg(0).unwrap();
-                let deserialized: HashMap<&str, &str> =
+                let deserialized: HashMap<String, String> =
                     serde_json::from_str(&message.as_str().unwrap()).unwrap();
                 println!("Received {:?}", deserialized);
                 responder.send("", 0).unwrap();
             }
+            // Check if heartbeat interval elapsed, send heartbeat/update message to peers
             // if start_time.elapsed() > allowed_duration {
             //     // if node_vec.len() > 0 {
             //     //     println!("{:?}", node_vec);
@@ -59,6 +59,7 @@ impl Node {
     }
 
     // TO BE IMPLEMENTED
+    // fn update_nodes()
     // fn get_adj_sample()
     // fn join()
     // fn add_node()

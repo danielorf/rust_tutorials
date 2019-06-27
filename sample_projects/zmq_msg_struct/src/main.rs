@@ -78,6 +78,7 @@ enum MessageType {
     Join = 0,
     Remove,
     Gossip,
+    Sync,
     Ping,
     Health,
 }
